@@ -13,7 +13,7 @@ const serializeSymptom = (symptom) => ({
 });
 
 tuckRouter
-  .route("/home")
+  .route("/symptoms")
   .get((req, res, next) => {
     console.log("get request");
     tuckService
@@ -39,8 +39,41 @@ tuckRouter
         console.log(`new symptom with id ${symptom.id} was created`);
         res
           .status(201)
-          .location(`/home/${symptom.id}`)
+          .location(`/symptoms/${symptom.id}`)
           .json(serializeSymptom(symptom));
+      })
+      .catch(next);
+  });
+
+tuckRouter
+  .route("/symptoms/:id")
+  .all((req, res, next) => {
+    const { id } = req.params;
+    tuckService
+      .getSymptomById(req.app.get("db"), id)
+      .then((symptom) => {
+        if (!symptom) {
+          console.error(`No symptom matching the id, ${id} was found.`);
+          return res.status(404).json({
+            error: { message: "Symptom not found" },
+          });
+        }
+        res.symptom = symptom;
+        next();
+      })
+      .catch(next);
+  })
+  .get((req, res) => {
+    res.json(serializeSymptom(res.symptom));
+  })
+  .delete((req, res, next) => {
+      console.log(req.params)
+    const { id } = req.params;
+    tuckService
+      .deleteSymptom(req.app.get("db"), id)
+      .then((shifted) => {
+        console.log(`Symptom with id of ${id} was deleted`);
+        res.status(204).end();
       })
       .catch(next);
   });
