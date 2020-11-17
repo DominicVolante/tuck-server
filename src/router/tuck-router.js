@@ -15,7 +15,6 @@ const serializeSymptom = (symptom) => ({
 tuckRouter
   .route("/symptoms")
   .get((req, res, next) => {
-    console.log("get request");
     tuckService
       .getAllSymptoms(req.app.get("db"))
       .then((symptoms) => {
@@ -67,7 +66,6 @@ tuckRouter
     res.json(serializeSymptom(res.symptom));
   })
   .delete((req, res, next) => {
-      console.log(req.params)
     const { id } = req.params;
     tuckService
       .deleteSymptom(req.app.get("db"), id)
@@ -76,6 +74,20 @@ tuckRouter
         res.status(204).end();
       })
       .catch(next);
-  });
+  })
+  .patch(bodyParser, (req, res, next) => {
+    const { severity, name, description } = req.body;
+    const updateSymptom = { severity, name, description }
+
+    tuckService.updateSymptom(
+        req.app.get('db'),
+        req.params.id,
+        updateSymptom
+    )
+    .then(rowsAffected => {
+        res.status(204).end()
+    })
+    .catch(next)
+  })
 
 module.exports = tuckRouter;

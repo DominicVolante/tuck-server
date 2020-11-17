@@ -15,7 +15,7 @@ VALUES
         3,
         'checking door, running around'
     ),
-        (
+    (
         'Fly-Biting',
         5,
         'yelping, hiding under the bed, biting his butt, checking the door, not responding to us'
