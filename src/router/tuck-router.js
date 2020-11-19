@@ -7,6 +7,7 @@ const bodyParser = express.json();
 
 const serializeSymptom = (symptom) => ({
   id: symptom.id,
+  date: symptom.date,
   name: xss(symptom.name),
   severity: symptom.severity,
   description: xss(symptom.description),
