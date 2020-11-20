@@ -1,4 +1,3 @@
-require('dotenv').config()
 const { NODE_ENV } = require('./config')
 const express = require('express')
 const morgan = require('morgan')

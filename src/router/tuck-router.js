@@ -27,6 +27,7 @@ tuckRouter
     for (const field of ["name", "severity", "description"]) {
       if (!req.body[field]) {
         console.error(`${field} is required`);
+        res.status(400)
       }
     }
 
