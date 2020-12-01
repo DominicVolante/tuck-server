@@ -1,12 +1,27 @@
-# Tuck API
-## This repo is a companion to the tuck client, https://tuckit.vercel.app/
+# Tuck (Server)
 
-This API is a node/postgres build to handle requests from Tuck. 
+App Live at https://tuckit.vercel.app/
 
-### GET requests are made to 'https://desolate-hollows-53553.herokuapp.com/symptoms'
+## Public Endpoints 
 
-### POST requests are made to 'https://desolate-hollows-53553.herokuapp.com/symptoms'
+### Symptoms
+- GET /entries
+   - returns all symptoms previously added
+- POST /entries
+    - posts a new symptom entered by the user to the server
+- PATCH /entries/:id
+    - updates specified symptom with new details provided by the user
+- DELETE /entries/:id
+    - deletes specified symptom for the user
 
-### DELETE requests are made to 'https://desolate-hollows-53553.herokuapp.com/symptoms/:id'
 
-### PATCH requests are made to 'https://desolate-hollows-53553.herokuapp.com/symptoms/:id'
+## Technology Used 
+- NodeJS
+- Express
+- Knex
+- PostgreSQL
+- CORS 
+- Helmet
+
+
+Hosted on Heroku
