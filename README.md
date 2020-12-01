@@ -5,13 +5,13 @@ App Live at https://tuckit.vercel.app/
 ## Public Endpoints 
 
 ### Symptoms
-- GET /entries
+- GET /symptoms
    - returns all symptoms previously added
-- POST /entries
+- POST /symptoms
     - posts a new symptom entered by the user to the server
-- PATCH /entries/:id
+- PATCH /symptoms/:id
     - updates specified symptom with new details provided by the user
-- DELETE /entries/:id
+- DELETE /symptoms/:id
     - deletes specified symptom for the user
 
 
